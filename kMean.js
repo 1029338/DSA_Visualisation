@@ -28,3 +28,18 @@ function calculateNewCentroids(){
         clusters[i].setNewCentroid(clusters[i].meanX, clusters[i].meanY);
     }
 }
+
+function calculateClusterSize(){
+    clusterSize = [];
+    for(var j=0;j<clusters.length;j++){
+        clusterSize[j] = 0; 
+    }
+    for(var i=0;i<nodes.length;i++){
+        for(var j=0;j<clusters.length;j++){
+            if(nodes[i].cluster == j){
+                clusterSize[j]++;
+            }
+        }
+    }
+    console.log(clusterSize);
+}
