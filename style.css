@@ -20,10 +20,41 @@ button{
 	margin:10px;
 }
 
+button:hover{
+	cursor:pointer;
+}
+
 #upfilediv{
 	height: 0px; 
 	width: 0px;
 	overflow:hidden;
+}
+
+#canspan{
+	float:left;
+	display:inline;
+	margin:20px;
+}
+
+#infoSpan{
+	text-align:center;
+	float:right;
+	display:inline;
+	height:422.4px;
+	width:422.4px;
+	background-color:#323232;
+	margin:20px;
+}
+
+.dynamicSpan{
+	padding:10px;
+	font: 500 16px 'MainFont', sans-serif !important;
+}
+
+.dynamicSpanHead{
+	color:white;
+	padding:10px;
+	font: 600 18px 'MainFont', sans-serif !important;
 }
 
 .inputStyle{
