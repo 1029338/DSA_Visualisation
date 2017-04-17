@@ -71,7 +71,7 @@ function showDetails(){
 		tr.appendChild(td2);
 		tr.className='dynamicSpan';
 		td1.innerHTML=clusterSize[j];
-		td2.innerHTML="( "+clusters[j].x+","+clusters[j].y+")";
+		td2.innerHTML="( "+ floor(clusters[j].x)+","+ floor(clusters[j].y)+")";
 		//document.getElementById("infoSpan").innerHTML+="<tr style='color:"+hex+";'><td class='dynamicSpan' >"+clusterSize[j]+"</td><td class='dynamicSpan'> ( "+clusters[j].x+","+clusters[j].y+")</td></tr>";
     }
 	
