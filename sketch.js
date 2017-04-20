@@ -6,6 +6,7 @@ var h1;
 var seeds;
 var input1;
 var clusterSize = [];
+var table;
 	
 function setup() {
     
@@ -16,13 +17,14 @@ var p1 = createP("Please enter the number of seeds in below provided box. These 
     input1 = createInput();
 	input1.class('inputStyle');
     buttonGo = createButton("Plot Random Seeds");
-	buttonFile= createButton("Upload data");
+	buttonFile= createButton("Upload File");
 	buttonFile.id("fileDiv");
 	buttonFile.mousePressed(triggerFile);
+    buttonLoadFile = createButton("Load File data on Canvas");
     buttonStart = createButton("Start");
     buttonNext = createButton("Next");
-    createP("");
     var div=createDiv();
+    p4 = createElement("p");
 	div.id('upfilediv');
 	var fileSelect = createFileInput(fileUploaded, 'multiple');
 	fileSelect.id('upfile');
@@ -48,20 +50,13 @@ var p1 = createP("Please enter the number of seeds in below provided box. These 
     buttonNext.mousePressed(buttonClicked);
     buttonStart.mousePressed(buttonStartKMean);
     buttonGo.mousePressed(buttonPlotRandomSeeds);
+    buttonLoadFile.mousePressed(buttonPlotRandomSeeds);
 
 }
 
 function fileUploaded(file) {
-
-  var table = loadTable(file.name);
-  rowCount = table.getRowCount();
-  for (var row = 0; row < rowCount; row++) {
-    
-    var x = table.getRow(row).get(1);
-    var y = table.getRow(row).get(2);
-    
-  console.write("("+ x + " , "+y+")");
-	}
+    table = loadTable(file.name,"csv","header");
+    p4.html("File uploaded successfully.");
 }
 
  function triggerFile(file) {
@@ -89,7 +84,7 @@ function draw() {
 function mousePressed(){
     if(0 <= mouseX && mouseX <= width && 0 <= mouseY && mouseY <= height && nodes.length > 0){
         var clusterColor = color(random()*256,random()*256,random()*256);
-        clusters.push(new cluster(mouseX,mouseY,clusterColor));
+        clusters.push(new cluster(floor(mouseX),floor(mouseY),clusterColor));
         loop();
     }
 }
@@ -110,8 +105,19 @@ function buttonStartKMean() {
 function buttonPlotRandomSeeds() {
     seeds = input1.value();
     nodes = [];
-    for(var i=0; i<seeds; i++){
-        nodes[i] = new node(floor(random(10,width-10)),floor(random(10,height-10)),255);
+    if(seeds > 0 || seeds != null){
+        for(var i=0; i<seeds; i++){
+            nodes[i] = new node(floor(random(10,width-10)),floor(random(10,height-10)),255);
+        }
+    }
+    if(table != null && table.getRowCount() != 0 && table.getColumnCount() != 0){
+        var rowCount = table.getRowCount();
+        for (var row = 0; row < rowCount; row++) {
+            var x = table.getRow(row).get(0);
+            var y = table.getRow(row).get(1); 
+            nodes[row] = new node(x,y,255);
+            console.log("("+ x + " , "+y+")");
+	   }
     }
     clusters = [];
     loop();

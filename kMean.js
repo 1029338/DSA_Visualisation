@@ -18,8 +18,8 @@ function calculateNewCentroids(){
         var tempMeanX = 0, tempMeanY = 0,numberOfPointsInCluster = 0;
         for(var j=0; j<nodes.length; j++){
             if(nodes[j].cluster == i){
-                tempMeanX = tempMeanX + nodes[j].xCoordinate;
-                tempMeanY = tempMeanY + nodes[j].yCoordinate;
+                tempMeanX = tempMeanX + parseInt(nodes[j].xCoordinate);
+                tempMeanY = tempMeanY + parseInt(nodes[j].yCoordinate);
                 numberOfPointsInCluster++;
             }
         }
