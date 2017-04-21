@@ -12,8 +12,8 @@ function setup() {
     
     h1 = createElement("h1","Visualization of K Mean algorithm");
     h1.style('text-align:center');
-var p1 = createP("Please enter the number of seeds in below provided box. These seeds are generated randomly.<br>Then, click anywhere on canvas to select your initial cluster points.");
-	createP("");
+    var p1 = createP("Please click anywhere on canvas to select your initial cluster points.<br>Please enter the number of seeds in below provided box. This seeds are generated randomly.");
+    createP("");
     input1 = createInput();
 	input1.class('inputStyle');
     buttonGo = createButton("Plot Random Seeds");
